@@ -1,0 +1,38 @@
+use crud;
+create table pasajeros(
+    id int auto_increment primary key,
+    nombres varchar(100),
+    Apellidos varchar(100),
+    DNI varchar(100),
+    Origen varchar(100),
+    Destino varchar(100),
+    celular varchar(12),
+    Monto varchar(12)
+);
+
+
+CREATE TABLE promociones (
+	id INT NOT NULL AUTO_INCREMENT,
+	promocion VARCHAR(200) DEFAULT NULL,
+	duracion VARCHAR(200) DEFAULT NULL,
+	id_persona INT NOT NULL,
+	PRIMARY KEY (id),
+	KEY fk_promociones_l_idx (id_persona),
+	CONSTRAINT fk_promociones_l FOREIGN KEY (id_persona) REFERENCES persona (id)persona
+)
+
+
+
+CREATE TABLE `promociones` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`promocion` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`duracion` VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`id_persona` INT(10) NOT NULL,
+	PRIMARY KEY (`id`) USING BTREE,
+	INDEX `fk_promociones_l_idx` (`id_persona`) USING BTREE,
+	CONSTRAINT `FK_promociones_pasajeros` FOREIGN KEY (`id_persona`) REFERENCES `pasajeros` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=11
+;
